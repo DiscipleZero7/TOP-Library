@@ -1,4 +1,4 @@
-const myLibrary = [];
+let myLibrary = [];
 const libraryContainer = document.querySelector(".libraryContainer");
 const addBookBtn = document.querySelector(".add-book-btn");
 
@@ -26,16 +26,33 @@ function addBookToLibrary(title, author, pages, read) {
 
     //add new book to library
 
-    const bookCard = document.createElement("div")
+    const bookCardContainer = document.createElement("div");
+    const bookCard = document.createElement("div");
+    const bookDeleteBtn = document.createElement("button");
 
     bookCard.textContent = `${book.title}, ${book.author}, ${book.pages} pages - Status: ${book.read}`;
+    bookDeleteBtn.textContent = "X";
 
-    libraryContainer.appendChild(bookCard);
+    bookDeleteBtn.addEventListener("click", () => {
+        console.log(book.title);
+
+        myLibrary = myLibrary.filter((e) => {
+            return e.id !== book.id
+        })
+
+        bookCardContainer.remove();
+    })
+
+    libraryContainer.appendChild(bookCardContainer);
+    bookCardContainer.appendChild(bookCard);
+    bookCardContainer.appendChild(bookDeleteBtn);
 }
+
 
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, "Have read");
 addBookToLibrary("Animal Farm", "George Orwell", 84, "Have read");
 addBookToLibrary("Treasure Island", "Robert Louise Stevenson", 271, "Haven't read");
+
 
 addBookBtn.addEventListener("click", () => {
     modal.showModal();
@@ -60,6 +77,8 @@ bookForm.addEventListener("submit", (e) => {
     }
 
     addBookToLibrary(bookTitle.value, bookAuthor.value, bookPages.value, bookReadStatus)
+
+    modal.close();
 
     console.log(myLibrary)
 })
