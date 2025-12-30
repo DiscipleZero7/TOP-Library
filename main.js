@@ -8,6 +8,8 @@ const modal = document.querySelector(".modal-form");
 const modalCloseBtn = document.querySelector(".modal-close-btn");
 const submitBookBtn = document.querySelector(".submit-book-btn");
 
+const formData = document.querySelector(".book-form")
+
 function Book(title, author, pages, read) {
     if (!new.target) {
         throw Error("You must use the 'new operator to call the constructor'");
@@ -49,7 +51,7 @@ function addBookToLibrary(title, author, pages, read) {
 
     const bookPages = document.createElement("h3");
     bookPages.classList.add("book-pages")
-    bookPages.textContent = book.pages;
+    bookPages.textContent = `Page count: ${book.pages}`;
     bookCardContainer.appendChild(bookPages);
 
     const bookStatus = document.createElement("button");
@@ -82,13 +84,19 @@ function addBookToLibrary(title, author, pages, read) {
     libraryContainer.appendChild(bookCardContainer);
 }
 
-
+// Default books for testing
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, "Have read");
 addBookToLibrary("Animal Farm", "George Orwell", 84, "Have read");
 addBookToLibrary("Treasure Island", "Robert Louise Stevenson", 271, "Haven't read");
-
+addBookToLibrary("Lord of the Flies", "William Golding", 189, "Haven't read");
+addBookToLibrary("Alice in Wonderland", "Lewis Carroll", 62, "Have read");
+addBookToLibrary("Tuesdays with Morrie", "Mitch Albom", 131, "Have read");
+addBookToLibrary("Strange Case of Dr. Jekyll and Mr. Hyde", "Robert Louise Stevenson", 97, "Haven't read");
+addBookToLibrary("1984", "George Orwell", 209, "Haven't read");
+//
 
 addBookBtn.addEventListener("click", () => {
+    formData.reset();
     modal.showModal();
 })
 

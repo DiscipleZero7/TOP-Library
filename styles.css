@@ -3,80 +3,103 @@
     padding: 0;
 }
 
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .header-container {
     font-size: 2rem;
     color: white;
     background-color: rgb(24, 119, 242);
-    padding: 0 10vw;
     margin-bottom: 5vh;
-
+    padding: 20px 15vw;;
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     align-items: center;
+}
+
+.header-title {
+    margin: auto;
 }
 
 .add-book-btn {
-    justify-self: end;
-    background-color: red;
+    position: absolute;
+    font-size: 1.2rem;
+    background-color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+
 }
 
 .libraryContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 650px);
+    place-content: center;
+    place-items: center;
+    
 }
 
 .book-card-container {
-    width: 350px;
+    width: 400px;
     border-radius: 10px;
     position: relative;
 
     display: grid;
-    grid-template: 1fr 1fr 1fr / 1fr 1fr;
+    grid-template: 1fr 1fr 1fr / 3fr 1fr;
     grid-template-areas: 
-    "title title"
-    "author delete"
+    "title delete"
+    "author ."
     "pages status";
     background-color: lightgray;
     padding: 10px;
     margin: 10px;
     gap: 5px;
+    box-shadow: 4px 4px 10px gray;
+
 }
 
 .book-title {
-    font-size: 2rem;
+    font-size: clamp(1rem, 1.2rem, 1.5rem);
     grid-area: title;
-    place-self: center;
+    align-self: center;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .book-author {
     grid-area: author;
-    align-self: center;
+    align-self: top;
+    font-size: 100%;
+    font-weight: 300;
 }
 
 .book-pages {
     grid-area: pages;
     align-self: center;
+    font-weight: 300;
 }
 
 .book-status {
     grid-area: status;
     align-self: center;
     justify-self: end;
+
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
 }
 
 .book-delete-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-
     background-color: lightgray;
     width: 40px;
     height: 40px;
     border-radius: 50%;
     border: none;
     font-size: 1.5rem;
-    place-self: center;
+    place-self: end;
 }
 
 .book-delete-btn:hover {
@@ -85,5 +108,41 @@
 }
 
 .modal-form {
+    font-size: 1.5rem;
     margin: auto;
+    border: none;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.book-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-checkbox-container {
+    display: flex;
+    gap: 20px;
+}
+
+.book-form input {
+    font-size: 1.5rem;
+}
+
+.form-btn-container {
+    display: flex;
+    gap: 20px;
+}
+
+.form-btn-container > button {
+    font-size: 1rem;
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
 }
