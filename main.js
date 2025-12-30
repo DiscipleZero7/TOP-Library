@@ -27,11 +27,47 @@ function addBookToLibrary(title, author, pages, read) {
     //add new book to library
 
     const bookCardContainer = document.createElement("div");
+    bookCardContainer.classList.add("book-card-container");
+    
     const bookCard = document.createElement("div");
-    const bookDeleteBtn = document.createElement("button");
 
-    bookCard.textContent = `${book.title}, ${book.author}, ${book.pages} pages - Status: ${book.read}`;
+    // each section of the card
+    const bookDeleteBtn = document.createElement("button");
+    bookDeleteBtn.classList.add("book-delete-btn")
     bookDeleteBtn.textContent = "X";
+    bookCardContainer.appendChild(bookDeleteBtn);
+
+    const bookTitle = document.createElement("h2");
+    bookTitle.classList.add("book-title")
+    bookTitle.textContent = book.title;
+    bookCardContainer.appendChild(bookTitle);
+
+    const bookAuthor = document.createElement("h3");
+    bookAuthor.classList.add("book-author")
+    bookAuthor.textContent = book.author;
+    bookCardContainer.appendChild(bookAuthor);
+
+    const bookPages = document.createElement("h3");
+    bookPages.classList.add("book-pages")
+    bookPages.textContent = book.pages;
+    bookCardContainer.appendChild(bookPages);
+
+    const bookStatus = document.createElement("button");
+    bookStatus.classList.add("book-status");
+    bookStatus.textContent = book.read;
+
+    // Read status toggle
+    bookStatus.addEventListener("click", () => {
+        if (bookStatus.textContent === "Have read") {
+            bookStatus.textContent = "Haven't read";
+            book.read = "Haven't read";
+        } else {
+            bookStatus.textContent = "Have read";
+            book.read = "Have read";
+        }
+    })
+
+    bookCardContainer.appendChild(bookStatus);
 
     bookDeleteBtn.addEventListener("click", () => {
         console.log(book.title);
@@ -44,8 +80,6 @@ function addBookToLibrary(title, author, pages, read) {
     })
 
     libraryContainer.appendChild(bookCardContainer);
-    bookCardContainer.appendChild(bookCard);
-    bookCardContainer.appendChild(bookDeleteBtn);
 }
 
 

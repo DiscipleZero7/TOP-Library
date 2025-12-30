@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.header-container {
+    font-size: 2rem;
+    color: white;
+    background-color: rgb(24, 119, 242);
+    padding: 0 10vw;
+    margin-bottom: 5vh;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-book-btn {
+    justify-self: end;
+    background-color: red;
+}
+
+.libraryContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.book-card-container {
+    width: 350px;
+    border-radius: 10px;
+    position: relative;
+
+    display: grid;
+    grid-template: 1fr 1fr 1fr / 1fr 1fr;
+    grid-template-areas: 
+    "title title"
+    "author delete"
+    "pages status";
+    background-color: lightgray;
+    padding: 10px;
+    margin: 10px;
+    gap: 5px;
+}
+
+.book-title {
+    font-size: 2rem;
+    grid-area: title;
+    place-self: center;
+}
+
+.book-author {
+    grid-area: author;
+    align-self: center;
+}
+
+.book-pages {
+    grid-area: pages;
+    align-self: center;
+}
+
+.book-status {
+    grid-area: status;
+    align-self: center;
+    justify-self: end;
+}
+
+.book-delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    background-color: lightgray;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    font-size: 1.5rem;
+    place-self: center;
+}
+
+.book-delete-btn:hover {
+    background-color: red;
+    color: white;
+}
+
+.modal-form {
+    margin: auto;
+}
