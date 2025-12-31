@@ -16,10 +16,12 @@
     </div>
 
     <dialog class="modal-form">
+        <h2>Add a new book to your collection</h2>
+        <p>Fields marked with * are required<p>
         <form class="book-form" action="">
             <div class="form-input-container">
-                <label for="title">Title</label>
-                <input type="text" name="title" id="title">
+                <label for="title">Title*</label>
+                <input type="text" name="title" id="title" required>
             </div>
             <div class="form-input-container">
                 <label for="author">Author</label>
@@ -27,17 +29,17 @@
             </div>
             <div class="form-input-container">
                 <label for="pages">Number of pages</label>
-                <input type="number" name="pages" id="pages">
+                <input type="number" name="pages" id="pages" max="999999">
             </div>
             <div class="form-checkbox-container">
                 <label for="read-status">Have you read this book?</label>
                 <input type="checkbox" name="read-status" id="read-status">
             </div>
+            <hr/>
             <div class="form-btn-container">
                 <button type="submit" class="submit-book-btn">Add book to library</button>
                 <button type="button" class="modal-close-btn">Cancel</button>
             </div>
-            
         </form>
     </dialog>
 

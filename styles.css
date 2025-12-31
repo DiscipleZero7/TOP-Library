@@ -32,6 +32,10 @@ body {
 
 }
 
+.add-book-btn:hover {
+    background-color: lightgreen
+}
+
 .libraryContainer {
     display: grid;
     grid-template-columns: repeat(auto-fit, 650px);
@@ -74,6 +78,10 @@ body {
     align-self: top;
     font-size: 100%;
     font-weight: 300;
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .book-pages {
@@ -87,9 +95,13 @@ body {
     align-self: center;
     justify-self: end;
 
-    border: none;
+    border: 2px solid red;
     padding: 10px;
     border-radius: 20px;
+}
+
+.have-read {
+    border: 2px solid green
 }
 
 .book-delete-btn {
@@ -108,14 +120,24 @@ body {
 }
 
 .modal-form {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin: auto;
     border: none;
     border-radius: 20px;
     padding: 20px;
 }
 
+.modal-form > h2,
+.modal-form > p {
+    text-align: center;
+}
+
+.modal-form > p {
+    color: gray;
+}
+
 .book-form {
+    padding: 20px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -128,21 +150,29 @@ body {
 
 .form-checkbox-container {
     display: flex;
-    gap: 20px;
+    gap: 10px;
 }
 
 .book-form input {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    padding: 10px;
 }
 
 .form-btn-container {
     display: flex;
+    justify-content: space-evenly;
     gap: 20px;
 }
 
 .form-btn-container > button {
     font-size: 1rem;
+    width: 160px;
     border: none;
     padding: 10px;
     border-radius: 20px;
+}
+
+.form-btn-container > button:hover {
+    background-color: rgb(24, 119, 242);
+    color: white;
 }

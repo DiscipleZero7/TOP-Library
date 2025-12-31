@@ -10,30 +10,40 @@ const submitBookBtn = document.querySelector(".submit-book-btn");
 
 const formData = document.querySelector(".book-form")
 
+// Array / Backend
 function Book(title, author, pages, read) {
     if (!new.target) {
         throw Error("You must use the 'new operator to call the constructor'");
     }
 
+    let status = "No read";
+    if (read) {
+        status = "Yes read";
+    }
+
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.read = read;
+    this.read = status;
     this.id = crypto.randomUUID();
+
+    //prototype function
+    this.status = function() {
+        (this.read === "Yes read") ? this.read = "No read" : this.read = "Yes read"
+    }
 }
 
+// DOM / Frontend / New Object
 function addBookToLibrary(title, author, pages, read) {
     const book = new Book(title, author, pages, read);
     myLibrary.push(book);
 
-    //add new book to library
-
+    // Add new book container to library container
     const bookCardContainer = document.createElement("div");
     bookCardContainer.classList.add("book-card-container");
-    
-    const bookCard = document.createElement("div");
+    libraryContainer.appendChild(bookCardContainer);
 
-    // each section of the card
+    // Creates each section of the card
     const bookDeleteBtn = document.createElement("button");
     bookDeleteBtn.classList.add("book-delete-btn")
     bookDeleteBtn.textContent = "X";
@@ -56,43 +66,38 @@ function addBookToLibrary(title, author, pages, read) {
 
     const bookStatus = document.createElement("button");
     bookStatus.classList.add("book-status");
+    if(book.read === "Yes read") {
+        bookStatus.classList.toggle("have-read");
+    }
+
     bookStatus.textContent = book.read;
+    bookCardContainer.appendChild(bookStatus);
 
     // Read status toggle
     bookStatus.addEventListener("click", () => {
-        if (bookStatus.textContent === "Have read") {
-            bookStatus.textContent = "Haven't read";
-            book.read = "Haven't read";
-        } else {
-            bookStatus.textContent = "Have read";
-            book.read = "Have read";
-        }
+        book.status();
+        bookStatus.textContent = book.read;
+        bookStatus.classList.toggle("have-read");
     })
 
-    bookCardContainer.appendChild(bookStatus);
-
+    // Remove book
     bookDeleteBtn.addEventListener("click", () => {
-        console.log(book.title);
-
         myLibrary = myLibrary.filter((e) => {
             return e.id !== book.id
         })
-
         bookCardContainer.remove();
     })
-
-    libraryContainer.appendChild(bookCardContainer);
 }
 
 // Default books for testing
-addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, "Have read");
-addBookToLibrary("Animal Farm", "George Orwell", 84, "Have read");
-addBookToLibrary("Treasure Island", "Robert Louise Stevenson", 271, "Haven't read");
-addBookToLibrary("Lord of the Flies", "William Golding", 189, "Haven't read");
-addBookToLibrary("Alice in Wonderland", "Lewis Carroll", 62, "Have read");
-addBookToLibrary("Tuesdays with Morrie", "Mitch Albom", 131, "Have read");
-addBookToLibrary("Strange Case of Dr. Jekyll and Mr. Hyde", "Robert Louise Stevenson", 97, "Haven't read");
-addBookToLibrary("1984", "George Orwell", 209, "Haven't read");
+addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 295, true);
+addBookToLibrary("Animal Farm", "George Orwell", 84, true);
+addBookToLibrary("Treasure Island", "Robert Louise Stevenson", 271, false);
+addBookToLibrary("Lord of the Flies", "William Golding", 189, false);
+addBookToLibrary("Alice in Wonderland", "Lewis Carroll", 62, true);
+addBookToLibrary("Tuesdays with Morrie", "Mitch Albom", 131, true);
+addBookToLibrary("Strange Case of Dr. Jekyll and Mr. Hyde", "Robert Louise Stevenson", 97, false);
+addBookToLibrary("1984", "George Orwell", 209, false);
 //
 
 addBookBtn.addEventListener("click", () => {
@@ -110,17 +115,9 @@ bookForm.addEventListener("submit", (e) => {
     const bookTitle = document.querySelector("#title");
     const bookAuthor = document.querySelector("#author");
     const bookPages = document.querySelector("#pages");
-    let bookReadStatus = document.querySelector("#read-status");
+    const bookReadStatus = document.querySelector("#read-status");
 
-    if (bookReadStatus.checked === true) {
-        bookReadStatus = "Have read";
-    } else {
-        bookReadStatus = "Haven't read";
-    }
-
-    addBookToLibrary(bookTitle.value, bookAuthor.value, bookPages.value, bookReadStatus)
+    addBookToLibrary(bookTitle.value, bookAuthor.value, bookPages.value, bookReadStatus.checked)
 
     modal.close();
-
-    console.log(myLibrary)
 })
