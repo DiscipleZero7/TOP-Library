@@ -7,7 +7,6 @@ const modalCloseBtn = document.querySelector(".modal-close-btn");
 const submitBookBtn = document.querySelector(".submit-book-btn");
 
 // Array / Backend
-
 class Book {
     constructor(title, author, pages, read) {
         let status = "No read";
