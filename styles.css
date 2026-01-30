@@ -63,14 +63,17 @@ body {
 
 }
 
+.book-title,
+.book-author {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
 .book-title {
     font-size: clamp(1rem, 1.2rem, 1.5rem);
     grid-area: title;
     align-self: center;
-
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
 }
 
 .book-author {
@@ -78,10 +81,6 @@ body {
     align-self: top;
     font-size: 100%;
     font-weight: 300;
-
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
 }
 
 .book-pages {

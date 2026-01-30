@@ -1,35 +1,30 @@
 let myLibrary = [];
 const libraryContainer = document.querySelector(".libraryContainer");
 const addBookBtn = document.querySelector(".add-book-btn");
-
 const bookForm = document.querySelector(".book-form");
-
 const modal = document.querySelector(".modal-form");
 const modalCloseBtn = document.querySelector(".modal-close-btn");
 const submitBookBtn = document.querySelector(".submit-book-btn");
 
-const formData = document.querySelector(".book-form")
-
 // Array / Backend
-function Book(title, author, pages, read) {
-    if (!new.target) {
-        throw Error("You must use the 'new operator to call the constructor'");
-    }
 
-    let status = "No read";
-    if (read) {
-        status = "Yes read";
-    }
 
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = status;
-    this.id = crypto.randomUUID();
+class Book {
+    constructor(title, author, pages, read) {
+        let status = "No read";
+        if (read) {
+            status = "Yes read";
+        }
 
-    //prototype function
-    this.status = function() {
-        (this.read === "Yes read") ? this.read = "No read" : this.read = "Yes read"
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = status;
+        this.id = crypto.randomUUID();
+
+        this.status = function() {
+            (this.read === "Yes read") ? this.read = "No read" : this.read = "Yes read"
+        }
     }
 }
 
@@ -98,10 +93,9 @@ addBookToLibrary("Alice in Wonderland", "Lewis Carroll", 62, true);
 addBookToLibrary("Tuesdays with Morrie", "Mitch Albom", 131, true);
 addBookToLibrary("Strange Case of Dr. Jekyll and Mr. Hyde", "Robert Louise Stevenson", 97, false);
 addBookToLibrary("1984", "George Orwell", 209, false);
-//
 
 addBookBtn.addEventListener("click", () => {
-    formData.reset();
+    bookForm.reset();
     modal.showModal();
 })
 
